@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAST Comercy E-commerce Website</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to CAST Comercy</h1>
+        <nav>
+            <ul>
+                <li><a href="#products">Products</a></li>
+                <li><a href="#cart">Shopping Cart</a></li>
+                <li><a href="#admin">Admin Panel</a></li>
+                <li><a href="https://wa.me/1234567890">Chat on WhatsApp</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="products">
+            <h2>Products</h2>
+            <div class="product" id="product1">
+                <h3>Product Name 1</h3>
+                <p>Description of Product 1.</p>
+                <button onclick="addToCart('Product Name 1')">Add to Cart</button>
+            </div>
+            <div class="product" id="product2">
+                <h3>Product Name 2</h3>
+                <p>Description of Product 2.</p>
+                <button onclick="addToCart('Product Name 2')">Add to Cart</button>
+            </div>
+            <!-- More products can be added in a similar way -->
+        </section>
+        <section id="cart">
+            <h2>Shopping Cart</h2>
+            <ul id="cart-items"></ul>
+            <h3>Total: <span id="total-price">$0</span></h3>
+            <button onclick="checkout()">Checkout</button>
+        </section>
+        <section id="admin">
+            <h2>Admin Panel</h2>
+            <form id="product-form" onsubmit="addProduct(event)">
+                <input type="text" id="product-name" placeholder="Product Name" required>
+                <input type="text" id="product-description" placeholder="Product Description" required>
+                <input type="number" id="product-price" placeholder="Product Price" required>
+                <button type="submit">Add Product</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 CAST Comercy. All Rights Reserved.</p>
+    </footer>
+    <script>
+        const cart = [];
+        function addToCart(product) {
+            cart.push(product);
+            updateCartDisplay();
+        }
+        function updateCartDisplay() {
+            const cartItems = document.getElementById('cart-items');
+            cartItems.innerHTML = '';
+            cart.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                cartItems.appendChild(li);
+            });
+            document.getElementById('total-price').textContent = '$' + (cart.length * 10); // Assuming each product costs $10
+        }
+        function checkout() {
+            alert('Proceeding to checkout');
+        }
+        function addProduct(event) {
+            event.preventDefault();
+            const name = document.getElementById('product-name').value;
+            const description = document.getElementById('product-description').value;
+            const price = document.getElementById('product-price').value;
+            // Logic to add product to database (not implemented)
+            alert(`Product ${name} added!`);
+        }
+    </script>
+</body>
+</html>
